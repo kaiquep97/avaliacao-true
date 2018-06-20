@@ -12,8 +12,11 @@
             Clicked="Admin_Clicked"/>
             
             <Button Text="AVALIAR"
-            VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-            Clicked="Avaliar_Clicked"/>
+                    HeightRequest="110" Margin="50,0,50,0"
+                    BackgroundColor="DarkGreen"
+                    TextColor="White" FontSize="30" FontAttributes="Bold"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"
+                    Clicked="Avaliar_Clicked"/>
             
         </StackLayout>
     </ContentPage.Content>

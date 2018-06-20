@@ -7,7 +7,7 @@
         <StackLayout>
             
 
-            <Grid>
+            <Grid VerticalOptions="CenterAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -23,23 +23,26 @@
                        HorizontalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
                 <rating:SfRating Precision="Standard" Value="{Binding NotaServico}" ItemCount="10"
                                  HorizontalOptions="CenterAndExpand" 
-                                 Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+                                 Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
 
-                <Label Text="Limpeza" FontSize="Large" FontAttributes="Bold" 
+                <Label Text="Avalie a limpeza" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,20"
                        HorizontalOptions="CenterAndExpand"
                        Grid.Column="0" Grid.Row="2"/>
                 <rating:SfRating Precision="Standard" Value="{Binding NotaLimpeza}" ItemCount="5" 
                                  HorizontalOptions="CenterAndExpand"
                                  Grid.Column="0" Grid.Row="3"/>
                 
-                <Label Text="Recepção" FontSize="Large" FontAttributes="Bold"
+                <Label Text="Avalie o atendimento da Recepção" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,20"
                        HorizontalTextAlignment="Center" Grid.Column="1" Grid.Row="2"/>
                 <rating:SfRating Precision="Standard" Value="{Binding NotaRecepcao}" ItemCount="5" 
                                  HorizontalOptions="CenterAndExpand"
                                  Grid.Column="1" Grid.Row="3"/>
             </Grid>
 
-            <Button Text="AVALIAR PROFESSORES" Clicked="Professores_Clicked"/>
+            <Button Text="AVALIAR PROFESSORES" Command="{Binding ProfessoresCommand}" 
+                    VerticalOptions="EndAndExpand" Margin="50,0,50,15" BackgroundColor="DarkGreen"
+                    TextColor="White" FontSize="24" FontAttributes="Bold"
+                    HeightRequest="70"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

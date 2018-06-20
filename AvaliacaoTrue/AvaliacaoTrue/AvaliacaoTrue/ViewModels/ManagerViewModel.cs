@@ -7,22 +7,35 @@ using System.Text;
 
 namespace AvaliacaoTrue.ViewModels
 {
-    public class ManagerViewModel
+    public class ManagerViewModel:BaseViewModel
     {
         public ObservableCollection<Professor> Professores { get; set; }
 
         public ManagerViewModel()
         {
             Professores = new ObservableCollection<Professor>();
+            AtualizaProfessores();
+        }
 
-            using(var dao = new ProfessorDAO())
+        private void AtualizaProfessores()
+        {
+            using (var dao = new ProfessorDAO())
             {
                 var profs = dao.GetAll();
-                foreach (var item in profs)
-                {
-                    Professores.Add(item);
-                }
+                Professores = new ObservableCollection<Professor>(profs);
             }
+            OnPropertyChanged(nameof(Professores));
+        }
+
+        public void AtualizaProfessor(Professor professor)
+        {
+            professor.Ativo = !professor.Ativo;
+            using (var dao = new ProfessorDAO())
+            {
+                dao.Update(professor);
+            }
+
+            AtualizaProfessores();
         }
     }
 }

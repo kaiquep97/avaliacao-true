@@ -39,6 +39,15 @@ namespace AvaliacaoTrue.Models
         public int ResultadoExercicio { get; set; }
         public int Simpatia { get; set; }
         public int Atencao { get; set; }
+
+        public AvaliacaoProfessor()
+        {
+
+        }
+        public AvaliacaoProfessor(Professor professor)
+        {
+            this.Professor = professor;
+        }
     }
 
 
@@ -52,7 +61,11 @@ namespace AvaliacaoTrue.Models
 
         [Ignore]
         public bool Selected { get; set; }
-
+        [Ignore]
+        public string AtivoTexto
+        {
+            get { return Ativo ? "ATIVO" : "DESATIVADO"; }
+        }
         public Professor()
         {
             Ativo = true;

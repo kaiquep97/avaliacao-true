@@ -7,12 +7,13 @@
         <ToolbarItem Text="Gerar" Order="Secondary"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Professores}">
+        <ListView ItemsSource="{Binding Professores}" ItemSelected="Professor_Selected" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Nome}"/>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Nome,StringFormat='NOME: {0}'}" FontAttributes="Bold" FontSize="Medium"/>
+                            <Label Text="{Binding AtivoTexto,StringFormat='STATUS: {0}'}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

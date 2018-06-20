@@ -31,6 +31,8 @@ namespace AvaliacaoTrue.ViewModels
                 }
 
                 App.Current.MainPage?.DisplayAlert("Professor", "Professor adicionado com sucesso!", "OK");
+                App.Current.MainPage?.Navigation.PopAsync();
+                Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
             });
         }
     }
