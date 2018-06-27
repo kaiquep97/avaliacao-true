@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
-             x:Class="TrueStudio.Views.AvaliarAtendimentoPage">
+             x:Class="TrueStudio.Views.AvaliarAtendimentoPage"
+             Title="Avaliação"
+             BackgroundImage="trueStudio2.png">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="Transparent">
 
 
             <Grid VerticalOptions="CenterAndExpand">
@@ -13,6 +15,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -37,10 +40,18 @@
                 <rating:SfRating Precision="Standard" Value="{Binding NotaRecepcao}" ItemCount="5" 
                                  HorizontalOptions="CenterAndExpand"
                                  Grid.Column="1" Grid.Row="3"/>
+
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4">
+                    <Label Text="OBSERVAÇÕES" 
+                           FontSize="Large" FontAttributes="Bold" 
+                           HorizontalTextAlignment="Center"/>
+
+                    <Entry Placeholder="Digite o seu comentário" Text="{Binding Observacoes}" Margin="50,0,50,0"/>
+                </StackLayout>
             </Grid>
 
-            <Button Text="AVALIAR PROFESSORES" Command="{Binding ProfessoresCommand}" 
-                    VerticalOptions="EndAndExpand" Margin="50,0,50,15" BackgroundColor="DarkGreen"
+            <Button Text="AVALIE SEU(S) PROFESSOR(ES)" Command="{Binding ProfessoresCommand}" IsVisible="{Binding IsVisible}"
+                    VerticalOptions="EndAndExpand" Margin="50,0,50,15" BackgroundColor="Black"
                     TextColor="White" FontSize="24" FontAttributes="Bold"
                     HeightRequest="70"/>
         </StackLayout>

@@ -31,19 +31,34 @@ namespace TrueStudio.DAO
 
         public Avaliacao Get(int id)
         {
+            
             return connection.GetWithChildren<Avaliacao>(id);
         }
 
         public IList<Avaliacao> GetAll()
         {
-            return connection.GetAllWithChildren<Avaliacao>();
+            //var txt = connection.Table<Avaliacao>().ToList();
+
+            //return txt;
+
+            try
+            {
+                var teste = connection.GetAllWithChildren<AvaliacaoProfessor>();
+                return connection.GetAllWithChildren<Avaliacao>(recursive:true);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Insert(Avaliacao item)
         {
             //connection.InsertWithChildren(item);
-            connection.InsertAll(item.AvaliacaoProfessores);
             connection.Insert(item);
+            connection.InsertAllWithChildren(item.AvaliacaoProfessores);
+            connection.UpdateWithChildren(item);
         }
 
         public void Update(Avaliacao item)

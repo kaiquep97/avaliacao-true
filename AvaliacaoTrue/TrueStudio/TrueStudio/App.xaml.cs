@@ -13,7 +13,7 @@ namespace TrueStudio
 		{
 			InitializeComponent();
 
-			MainPage = new TrueStudio.MainPage();
+			MainPage = new NavigationPage(new TrueStudio.MainPage());
 		}
 
 		protected override void OnStart ()

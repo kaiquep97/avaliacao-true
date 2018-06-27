@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace TrueStudio.ViewModels
 {
-    public class AvaliarAtendimentoViewModel
+    public class AvaliarAtendimentoViewModel:BaseViewModel
     {
         private Avaliacao avaliacao { get; set; }
         public int NotaServico
@@ -38,13 +38,36 @@ namespace TrueStudio.ViewModels
             }
         }
 
+        public string Observacoes
+        {
+            get { return avaliacao.Observacoes; }
+            set
+            {
+                avaliacao.Observacoes = value;
+            }
+        }
+
+        private bool isVisible;
+
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set { isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public ICommand ProfessoresCommand { get; set; }
 
         public AvaliarAtendimentoViewModel()
         {
+            IsVisible = true;
             this.avaliacao = new Avaliacao();
             ProfessoresCommand = new Command(() => {
-                App.Current.MainPage?.Navigation.PushAsync(new Views.SelecionarProfessorPage(avaliacao));
+                IsVisible = false;
+                App.Current.MainPage?.Navigation.PushAsync(new Views.ListaProfessorPage(avaliacao));
+                IsVisible = true;
             }, () =>
             {
                 return NotaServico > 0

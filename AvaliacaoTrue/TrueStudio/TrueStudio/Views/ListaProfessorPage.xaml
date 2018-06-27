@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TrueStudio.Views.ListaProfessorPage"
+             Title="Selecione seus professores">
+    <ContentPage.Content>
+        <Frame OutlineColor="Silver" Margin="15">
+            <ListView ItemsSource="{Binding Professores}" ItemSelected="Lista_Selected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Spacing="10">
+                                <Switch IsToggled="{Binding Selected}" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Nome}" FontAttributes="Bold" FontSize="Medium" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Footer>
+                    <Button Text="Proximo"  Command="{Binding SelecionarCommand}" IsVisible="{Binding IsVisible}"
+                            VerticalOptions="EndAndExpand" Margin="50,0,50,15" BackgroundColor="Black" 
+                            TextColor="White" FontSize="24" FontAttributes="Bold" HeightRequest="70"/>
+                </ListView.Footer>
+            </ListView>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

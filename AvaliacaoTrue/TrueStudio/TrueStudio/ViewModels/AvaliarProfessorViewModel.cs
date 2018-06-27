@@ -60,6 +60,15 @@ namespace TrueStudio.ViewModels
             }
         }
 
+        public string Comentario
+        {
+            get { return avaliacaoProfessor.Comentario; }
+            set
+            {
+                avaliacaoProfessor.Comentario = value;
+            }
+        }
+
         public ICommand ProximoCommand { get; set; }
 
 
@@ -76,19 +85,20 @@ namespace TrueStudio.ViewModels
                 if (selecionados.Count > 0)
                 {
                     avaliacaoProfessor = new AvaliacaoProfessor(selecionados[0]);
-
                     OnPropertyChanged(nameof(Nome));
                     OnPropertyChanged(nameof(Simpatia));
                     OnPropertyChanged(nameof(InstrucaoTecnica));
                     OnPropertyChanged(nameof(Atencao));
                     OnPropertyChanged(nameof(ResultadoExercicio));
+                    OnPropertyChanged(nameof(Comentario));
                 }
                 else
                 {
                     using (var dao = new AvaliacaoDAO())
                     {
+                        avaliacao.AvaliacaoProfessores.ForEach((av) => { av.AvaliacaoId = avaliacao.ID; });
                         dao.Insert(avaliacao);
-                        App.Current.MainPage.DisplayAlert("Avaliação", "Avaliação registrada com sucesso!", "OK");
+                        App.Current.MainPage.DisplayAlert("Avaliação", "Avaliação registrada com sucesso.\nMuito obrigado!", "OK");
                         App.Current.MainPage.Navigation.PopToRootAsync();
                     }
                 }

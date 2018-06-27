@@ -10,14 +10,28 @@ using Xamarin.Forms;
 
 namespace TrueStudio.ViewModels
 {
-    public class SelecionarProfessorViewModel
+    public class SelecionarProfessorViewModel:BaseViewModel
     {
         public ObservableCollection<Professor> Professores { get; set; }
 
         public ICommand SelecionarCommand { get; set; }
 
+        private bool isVisible;
+
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set
+            {
+                isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public SelecionarProfessorViewModel(Avaliacao avaliacao)
         {
+            IsVisible = true;
             Professores = new ObservableCollection<Professor>();
             using (var dao = new ProfessorDAO())
             {
@@ -28,16 +42,18 @@ namespace TrueStudio.ViewModels
             }
 
             SelecionarCommand = new Command(() => {
-
+                IsVisible = false;
                 var selected = Professores?.Where(x => x.Selected).ToList();
 
                 if (selected.Count < 1)
                 {
                     App.Current.MainPage?.DisplayAlert("Selecione o professor", "Nenhum professor selecionado.", "Fechar");
+                    IsVisible = true;
                     return;
                 }
-
-                App.Current.MainPage?.Navigation.PushAsync(new Views.AvaliarProfessorPage(avaliacao, selected));
+                var pages = new Views.AvaliarProfessorPage(avaliacao, selected);
+                App.Current.MainPage?.Navigation.PushAsync(pages);
+                IsVisible = true;
             });
 
         }
